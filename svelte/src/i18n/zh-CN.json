@@ -4,7 +4,7 @@
     "saves":   "收藏",
     "sources": "订阅",
     "models":  "模型",
-    "inputs":  "输入",
+    "inputs":  "批量任务",
     "run":"工作流"
   },
   "common": {

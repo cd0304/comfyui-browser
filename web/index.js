@@ -162,13 +162,36 @@ class BrowserDialog extends ComfyDialog {
         var height= menuElement.offsetHeight;
         
         if (menuElement) {
-          console.log('找到了元素:', menuElement);
+          // console.log('找到了元素:', menuElement);
         } else {
           console.log('没有找到元素');
         }
       } else {
         console.log('没有找到iframe');
       }
+
+      // 强行隐藏其他组件在顶上的导航栏
+      var element_mape = document.querySelector('.mapeRoot');
+      var element_manager = document.querySelector('.comfy-menu');
+
+      if (element_mape) {
+        element_mape.style.display = 'none';
+      } 
+      if (element_manager) {
+        // element_manager.style.display = 'none';
+        //让manager的高度不要超过自己的导航栏的高度
+        // 使用正则表达式提取数字部分
+        let managerTop = element_manager.style.top;
+        let managerTopNum = parseFloat(managerTop.replace(/[^0-9.-]+/g,""));
+  
+        if(managerTopNum < height) {
+          // console.log('manager的高度小于于导航栏的高度',element_manager.style.top);
+          element_manager.style.top = height+'px';
+        } else {
+          // console.log('manager的高度大于导航栏的高度',element_manager.style.top);
+        }
+   
+      } 
       e.style.left = '0px';
       e.style.top = '0px';
       e.style.transform = 'translate(-10px, -10px)';
@@ -329,24 +352,19 @@ app.registerExtension({
     );
 
     setTimeout(() => {
-      var iframeElement = document.getElementById('comfy-browser-iframe');
-      if (iframeElement) {
-        // 获取iframe的内容文档
-        var iframeContentDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-        
-        // 现在你可以在这个文档上使用getElementById
-        var menuElement = iframeContentDoc.getElementById('gdds_head');
-        var he= menuElement.offsetHeight;
-        
-        if (menuElement) {
-          console.log('找到了元素:', menuElement);
-        } else {
-          console.log('没有找到元素');
-        }
+      //隐藏mape组件在顶上的导航栏
+      // 假设我们要隐藏的元素的ID是'myElement'
+      var element = document.querySelector('.mapeRoot');
+
+      // 检查元素是否存在
+      if (element) {
+        // 隐藏元素
+        element.style.display = 'none';
       } else {
-        console.log('没有找到iframe');
+        console.log('没有找到元素');
       }
-    }, 500);
+
+    }, 200);
   },
 
 

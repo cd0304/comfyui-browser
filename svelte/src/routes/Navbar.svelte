@@ -29,24 +29,7 @@
 
 <div  id="gdds_head" class="flex">
   <ul class="menu menu-horizontal bg-base-200 rounded-box flex-1">
-    <!-- <li>
-      <button
-        class={activeTabClass('inputs')}
-        on:click={() => onClickTab('inputs')}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          class="w-6 h-6"
-        >
-          <path
-            fill="currentColor"
-            d="M12,3 L17,8 V15 H9 V8 L12,3 Z M5,19 V17 H19 V19 H5 Z M16,12.5 V15 H8 V12.5 H16 Z"
-          />
-        </svg>
-        {$t('navbar.inputs')}
-      </button>
-    </li> -->
+    
     <li>
       <button class={activeTabClass('run')} on:click={() => onClickTab('run')}>
         <svg
@@ -157,6 +140,24 @@
           />
         </svg>
         {$t('navbar.models')}
+      </button>
+    </li>
+    <li>
+      <button
+        class={activeTabClass('inputs')}
+        on:click={() => onClickTab('inputs')}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          class="w-6 h-6"
+        >
+          <path
+            fill="currentColor"
+            d="M12,3 L17,8 V15 H9 V8 L12,3 Z M5,19 V17 H19 V19 H5 Z M16,12.5 V15 H8 V12.5 H16 Z"
+          />
+        </svg>
+        {$t('navbar.inputs')}
       </button>
     </li>
   </ul>
