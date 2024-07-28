@@ -13,6 +13,8 @@
   async function onClickTab(tab: string) {
     activeTab = tab;
   }
+  window.top?.dispatchEvent(new CustomEvent("setBrowserSize", { detail: 1 }));
+  
 </script>
 
 <div class="drawer md:drawer-open">

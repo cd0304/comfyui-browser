@@ -37,6 +37,7 @@
   }
 
   onMount(async () => {
+    window.top?.dispatchEvent(new CustomEvent("setBrowserSize", { detail: 1 }));
     refreshSources();
     getAllSources();
   });

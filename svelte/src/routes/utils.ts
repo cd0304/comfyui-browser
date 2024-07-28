@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import type Toast from './Toast.svelte';
 
-export type FOLDER_TYPES = 'outputs' | 'collections' | 'sources';
+export type FOLDER_TYPES ='inputs'| 'outputs' | 'collections' | 'sources';
 
 export const IMAGE_EXTS = ['png', 'webp', 'jpeg', 'jpg', 'gif'];
 export const VIDEO_EXTS = ['mp4', 'webm', 'mov', 'avi', 'mkv'];
@@ -139,15 +139,17 @@ export async function onLoadWorkflow(file: any, comfyApp: any, toast: Toast) {
   });
   const f = comfyApp.loadGraphData.bind(comfyApp);
   comfyApp.loadGraphData = async function(graphData: any) {
-    const modal = window.top?.document.getElementById('comfy-browser-dialog');
-    if (modal) {
-      modal.style.display = 'none';
-    }
+    // const modal = window.top?.document.getElementById('comfy-browser-dialog');
+    // if (modal) {
+    //   modal.style.display = 'none';
+    // }
+    // console.log("switchToTab");
+    window.top?.dispatchEvent(new CustomEvent('switchTabToRun'));
     await f(graphData);
   }
   await comfyApp.handleFile(fileObj);
 
-  toast.show(false, 'Loaded', 'No workflow found here');
+  // toast.show(false, 'Loaded', 'No workflow found here');
 }
 
 

@@ -1,9 +1,11 @@
 {
   "navbar": {
     "outputs": "输出",
-    "saves": "收藏",
+    "saves":   "收藏",
     "sources": "订阅",
-    "models": "模型"
+    "models":  "模型",
+    "inputs":  "输入",
+    "run":"工作流"
   },
   "common": {
     "emptyList": "暂无数据",

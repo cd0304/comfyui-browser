@@ -5,6 +5,7 @@
   export let comfyUrl: string;
 
   let toast: Toast;
+  window.top?.dispatchEvent(new CustomEvent("setBrowserSize", { detail: 1 }));
 </script>
 
 <FilesList folderType="outputs" {comfyUrl} {toast} />

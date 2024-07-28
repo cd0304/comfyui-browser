@@ -26,15 +26,23 @@ function setLocalConfig(key, value) {
 class BrowserDialog extends ComfyDialog {
   constructor() {
     super();
+    window.top.addEventListener("setBrowserSize", (event) => {
+      const data = event.detail;
+      console.log(100,data)
+      this.toggleSidePanel(data)
+    });
+    
 
     const localConfig = getLocalConfig();
     let modalStyle = {
-      width: "70%",
-      height: "80%",
+      left: "0px",
+      top: "0px",
+      width: "100%",
+      height: "100%",
       maxWidth: "100%",
       maxHeight: "100%",
       minWidth: "24%",
-      minHeight: "24%",
+      minHeight: "5%",
       padding: "6px",
       zIndex: 1000,
       resize: 'auto',
@@ -43,7 +51,7 @@ class BrowserDialog extends ComfyDialog {
     if (cs) {
       modalStyle.left = cs.left;
       modalStyle.top = cs.top;
-      modalStyle.transform = cs.transform;
+      // modalStyle.transform = cs.transform;
       modalStyle.height = cs.height;
       modalStyle.width = cs.width;
     }
@@ -60,20 +68,25 @@ class BrowserDialog extends ComfyDialog {
         },
       }, [
         $el("iframe", {
+          id: "comfy-browser-iframe",
           src: browserUrl + "?timestamp=" + Date.now(),
           style: {
             width: "100%",
             height: "100%",
           },
         }),
-        ...this.createButtons(),
+        // ...this.createButtons(),
       ]),
 		]);
 
     new ResizeObserver(
       this.onResize.bind(this)
     ).observe(this.element);
+
+    window.toggleSidePanel = this.toggleSidePanel;
   }
+
+
 
   createButtons() {
     const closeBtn = $el("button", {
@@ -129,20 +142,38 @@ class BrowserDialog extends ComfyDialog {
     });
   }
 
-  toggleSidePanel() {
+  toggleSidePanel(isFullScreen) {
     const e = this.element;
-    if (e.style.left === '0px') {
-      e.style.left = '';
-      e.style.top = '';
-      e.style.transform = '';
-      e.style.height = '85%';
-      e.style.width = '80%';
-    } else {
+    if (isFullScreen) {
       e.style.left = '0px';
       e.style.top = '0px';
       e.style.transform = 'translate(-10px, -10px)';
       e.style.height = '100%';
-      e.style.width = '32%';
+      e.style.width = '100%';
+    } else {
+      var iframeElement = document.getElementById('comfy-browser-iframe');
+      var height= 30;
+      if (iframeElement) {
+        // 获取iframe的内容文档
+        var iframeContentDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+        
+        // 现在你可以在这个文档上使用getElementById
+        var menuElement = iframeContentDoc.getElementById('gdds_head');
+        var height= menuElement.offsetHeight;
+        
+        if (menuElement) {
+          console.log('找到了元素:', menuElement);
+        } else {
+          console.log('没有找到元素');
+        }
+      } else {
+        console.log('没有找到iframe');
+      }
+      e.style.left = '0px';
+      e.style.top = '0px';
+      e.style.transform = 'translate(-10px, -10px)';
+      e.style.height = height+'px';
+      e.style.width = '100%';
     }
 
     setLocalConfig('modalStyles', {
@@ -153,6 +184,7 @@ class BrowserDialog extends ComfyDialog {
       width: e.style.width,
     });
   }
+
 
   close() {
     this.element.style.display = "none";
@@ -213,7 +245,7 @@ app.registerExtension({
   },
   async setup() {
     const browserDialog = new BrowserDialog();
-
+    browserDialog.show();
     document.addEventListener('keydown', (event) => {
       if (event.key === 'b') {
         if (event.target.matches('input, textarea')) {
@@ -295,5 +327,28 @@ app.registerExtension({
         }),
       ])
     );
+
+    setTimeout(() => {
+      var iframeElement = document.getElementById('comfy-browser-iframe');
+      if (iframeElement) {
+        // 获取iframe的内容文档
+        var iframeContentDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+        
+        // 现在你可以在这个文档上使用getElementById
+        var menuElement = iframeContentDoc.getElementById('gdds_head');
+        var he= menuElement.offsetHeight;
+        
+        if (menuElement) {
+          console.log('找到了元素:', menuElement);
+        } else {
+          console.log('没有找到元素');
+        }
+      } else {
+        console.log('没有找到iframe');
+      }
+    }, 500);
   },
+
+
+
 });
