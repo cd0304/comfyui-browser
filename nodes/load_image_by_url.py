@@ -9,7 +9,7 @@ from ..utils import http_client
 import folder_paths
 
 class LoadImageByUrl:
-    CATEGORY = "Browser"
+    CATEGORY = "gdds"
 
     RETURN_TYPES = ("IMAGE", )
     RETURN_NAMES = ("IMAGE", )

@@ -30,7 +30,7 @@ class SelectInputs:
 
     OUTPUT_NODE = True
 
-    CATEGORY = "Browser"
+    CATEGORY = "gdds"
 
 
     def run(self, input_1, input_2, input_3, input_4, preview):

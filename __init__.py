@@ -5,7 +5,7 @@ import server
 
 from .utils import collections_path, browser_path, sources_path, download_logs_path, outputs_path
 from .routes import sources, collections, config, files, downloads, xyz_plot as xyz_plot_routes
-from .nodes import select_inputs, load_image_by_url, xyz_plot, dify_text_generator, upload_to_remote
+from .nodes import select_inputs, load_image_by_url, xyz_plot, dify_text_generator, upload_to_remote,svg_generator
 
 
 browser_app = web.Application()
@@ -50,6 +50,7 @@ NODE_CLASS_MAPPINGS = {
     "XyzPlot //Browser": xyz_plot.XyzPlot,
     "DifyTextGenerator //Browser": dify_text_generator.DifyTextGenerator,
     "UploadToRemote //Browser": upload_to_remote.UploadToRemote,
+    "SVGGenerator":svg_generator.SVGGenerator
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
     "LoadImageByUrl //Browser": "Load Image By URL",
@@ -57,4 +58,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "XyzPlot //Browser": "XYZ Plot",
     "DifyTextGenerator //Browser": "Dify Text Generator",
     "UploadToRemote //Browser": "Upload To Remote",
+    "SVGGenerator":"SVGGenerator"
 }

@@ -9,7 +9,7 @@ import base64
 from ..utils import http_client, log
 
 class UploadToRemote:
-    CATEGORY = "Browser"
+    CATEGORY = "gdds"
 
     RETURN_TYPES = ()
     RETURN_NAMES = ()
