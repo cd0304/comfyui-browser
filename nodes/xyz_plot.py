@@ -11,7 +11,7 @@ import folder_paths
 from ..utils import SERVER_BASE_URL, http_client
 
 class XyzPlot:
-    CATEGORY = "gdds"
+    CATEGORY = "🐶gdds"
 
     RETURN_TYPES = ()
     RETURN_NAMES = ()

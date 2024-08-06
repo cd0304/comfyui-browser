@@ -17,7 +17,7 @@ class SVGGenerator:
 
     RETURN_TYPES = ("IMAGE", "MASK")
     FUNCTION = "generate_and_convert_svg"
-    CATEGORY = "gdds"
+    CATEGORY = "🐶gdds"
 
     def generate_svg(self, width, height, color_start, color_end):
         dwg = svgwrite.Drawing(size=(width, height))

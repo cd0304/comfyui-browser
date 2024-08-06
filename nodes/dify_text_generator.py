@@ -2,7 +2,7 @@ import json
 from ..utils import http_client
 
 class DifyTextGenerator:
-    CATEGORY = "gdds"
+    CATEGORY = "🐶gdds"
 
     RETURN_TYPES = ("STRING", )
 

@@ -5,7 +5,7 @@ import server
 
 from .utils import collections_path, browser_path, sources_path, download_logs_path, outputs_path
 from .routes import sources, collections, config, files, downloads, xyz_plot as xyz_plot_routes
-from .nodes import select_inputs, load_image_by_url, xyz_plot, dify_text_generator, upload_to_remote,svg_generator
+from .nodes import select_inputs, load_image_by_url, xyz_plot, dify_text_generator, upload_to_remote,svg_generator,ImageBlend
 
 
 browser_app = web.Application()
@@ -45,18 +45,20 @@ server.PromptServer.instance.app.add_subapp("/browser/", browser_app)
 
 WEB_DIRECTORY = "web"
 NODE_CLASS_MAPPINGS = {
-    "LoadImageByUrl //Browser": load_image_by_url.LoadImageByUrl,
-    "SelectInputs //Browser": select_inputs.SelectInputs,
-    "XyzPlot //Browser": xyz_plot.XyzPlot,
-    "DifyTextGenerator //Browser": dify_text_generator.DifyTextGenerator,
-    "UploadToRemote //Browser": upload_to_remote.UploadToRemote,
-    "SVGGenerator":svg_generator.SVGGenerator
+    "LoadImageByUrl": load_image_by_url.LoadImageByUrl,
+    "SelectInputs": select_inputs.SelectInputs,
+    "XyzPlot": xyz_plot.XyzPlot,
+    "DifyTextGenerator": dify_text_generator.DifyTextGenerator,
+    "UploadToRemote": upload_to_remote.UploadToRemote,
+    "SVGGenerator":svg_generator.SVGGenerator,
+    "GddsImageBlend":ImageBlend.GddsImageBlend
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "LoadImageByUrl //Browser": "Load Image By URL",
-    "SelectInputs //Browser": "Select Node Inputs",
-    "XyzPlot //Browser": "XYZ Plot",
-    "DifyTextGenerator //Browser": "Dify Text Generator",
-    "UploadToRemote //Browser": "Upload To Remote",
-    "SVGGenerator":"SVGGenerator"
+    "LoadImageByUrl ": "Load Image By URL",
+    "SelectInputs": "Select Node Inputs",
+    "XyzPlot": "XYZ Plot",
+    "DifyTextGenerator": "Dify Text Generator",
+    "UploadToRemote": "Upload To Remote",
+    "SVGGenerator":"SVGGenerator",
+    "GddsImageBlend":"GddsImageBlend"
 }
